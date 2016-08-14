@@ -1,0 +1,57 @@
+<ion-view view-title="{{phoneDetailsCtrl.name}}">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+
+        <h2 align="center">{{phoneDetailsCtrl.name}}</h2>
+
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label"><b>Name:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.name">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>ID:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.id">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Phone:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.phone">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Str:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.street">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>House:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.house">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Apt:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.apt">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Zip:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.index">
+            </label>
+        </div>
+
+    </ion-content>
+</ion-view>

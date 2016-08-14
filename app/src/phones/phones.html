@@ -1,0 +1,45 @@
+<ion-view view-title="Phones ({{phonesCtrl.phonesFilter.length}} / {{phonesCtrl.phones.length}})"
+          ng-click="phonesCtrl.queryClear()">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="phonesCtrl.showSearch()">
+        </button>
+    </ion-nav-buttons>
+
+    <!--
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-search"
+                ng-click="phonesCtrl.phonesSearch()">
+        </button>
+    </ion-nav-buttons>
+    -->
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="phonesCtrl.query.name" ng-change="phonesCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="phonesCtrl.clear"></i>
+        </label>
+    </div>
+
+    <ion-content class="has-subheader">
+
+        <ion-refresher on-refresh="phonesCtrl.doRefresh()"></ion-refresher>
+
+        <ion-list>
+            <ion-item
+                    collection-repeat="phone in (phonesCtrl.phonesFilter = (phonesCtrl.phones | filter: phonesCtrl.query))"
+                    type="item-text-wrap" ng-click="phonesCtrl.phoneDetails(phone)">
+                <h2><strong>{{phone.name}} - {{phone.phone}}</strong></h2>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+
+    <div ng-if="phonesCtrl.searchShowed" class="badge-div" ng-click="phonesCtrl.phonesSearch()">
+        <span class="badge-icon ion-search"></span>
+    </div>
+
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view view-title="IO-Base" name="login-view" hide-nav-bar="false">
+    <ion-content class="padding">
+
+        <div>
+            <img ng-src="logo.jpg" class="logo" style1="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+
+        <button class="button button-block button-positive" style="background-color: #417D9A !important;">
+            <strong>Login</strong>
+        </button>
+
+        <form ng-submit="loginCtrl.toLogin()" novalidate name="loginCtrl.form" autocomplete="off">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text"
+                           placeholder="Username"
+                           ng-model="loginCtrl.name"
+                           name="name"
+                           ng-change="loginCtrl.change()" required>
+                </label>
+
+                <div ng-if="loginCtrl.form.$submitted">
+                    <div ng-show="loginCtrl.form.name.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <input type="password"
+                           placeholder="Password"
+                           ng-model="loginCtrl.pass"
+                           name="pass" required>
+                </label>
+
+                <div ng-if="loginCtrl.form.$submitted">
+                    <div ng-show="loginCtrl.form.pass.$error.required" class="valid">Value required</div>
+                </div>
+            </div>
+            <div ng-show="loginCtrl.error" class="valid fix">
+                Error. Wrong name or password
+            </div>
+            <button type="submit" class="button button-block button-positive"
+                    style="background-color: #417D9A !important;">
+                <strong>Submit</strong>
+            </button>
+        </form>
+
+    </ion-content>
+</ion-view>

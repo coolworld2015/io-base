@@ -1,0 +1,37 @@
+<ion-view view-title="Audit ({{auditCtrl.auditFilter.length}} / {{auditCtrl.audits.length}})"
+          ng-click="auditCtrl.queryClear()">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="auditCtrl.showSearch()">
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="auditCtrl.query.name" ng-change="auditCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="auditCtrl.clear"></i>
+        </label>
+    </div>
+
+    <ion-content class="has-subheader">
+
+        <ion-refresher on-refresh="auditCtrl.doRefresh()"></ion-refresher>
+
+        <ion-list>
+            <ion-item
+                    collection-repeat="audit in (auditCtrl.auditFilter = (auditCtrl.audits | filter: auditCtrl.query))"
+                    type="item-text-wrap" ng-click="auditCtrl.auditDetails(audit)">
+                <h2><strong>{{audit.name}} - {{audit.date}}</strong></h2>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+
+    <div ng-if="auditCtrl.searchShowed" class="badge-div" ng-click="auditCtrl.phonesSearch()">
+        <span class="badge-icon ion-search"></span>
+    </div>
+
+</ion-view>

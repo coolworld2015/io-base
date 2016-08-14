@@ -1,0 +1,46 @@
+<ion-view view-title="{{auditDetailsCtrl.date}}">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+
+        <h2 align="center">{{auditDetailsCtrl.date}}</h2>
+
+        <div class="list">
+			<label class="item item-input">
+                <span class="input-label"><b>ID:</b></span>
+                <input type="text"
+                       ng-model="auditDetailsCtrl.id">
+            </label>
+			
+            <label class="item item-input">
+                <span class="input-label"><b>Name:</b></span>
+                <input type="text"
+                       ng-model="auditDetailsCtrl.name">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Date:</b></span>
+                <input type="text"
+                       ng-model="auditDetailsCtrl.date">
+            </label>
+			
+            <label class="item item-input">
+                <span class="input-label"><b>IP Address:</b></span>
+                <input type="text"
+                       ng-model="auditDetailsCtrl.ip">
+            </label>
+			
+            <label class="item item-input">
+                <span class="input-label"><b>Description:</b></span>
+                <textarea rows="5"
+                          ng-model="auditDetailsCtrl.description">
+                </textarea>
+            </label>
+        </div>
+
+    </ion-content>
+</ion-view>

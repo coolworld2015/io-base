@@ -1,0 +1,27 @@
+<ion-view view-title="Search results ({{phonesSearchResultsCtrl.phonesFilter.length}} / {{phonesSearchResultsCtrl.phones.length}})" ng-click="phonesSearchResultsCtrl.queryClear()">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="phonesSearchResultsCtrl.phonesSearch()">
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="phonesSearchResultsCtrl.query.name" ng-change="phonesSearchResultsCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="phonesSearchResultsCtrl.clear"></i>
+        </label>
+    </div>
+
+    <ion-content class="has-subheader">
+
+        <ion-list>
+            <ion-item collection-repeat="phone in (phonesSearchResultsCtrl.phonesFilter = (phonesSearchResultsCtrl.phones | filter: phonesSearchResultsCtrl.query))"
+                      type="item-text-wrap" ng-click="phonesSearchResultsCtrl.phoneDetails(phone)">
+                <h2><strong>{{phone.name}} - {{phone.phone}}</strong></h2>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

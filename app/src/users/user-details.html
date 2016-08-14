@@ -1,0 +1,49 @@
+<ion-view view-title="{{userDetailsCtrl.name}}">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="userDetailsCtrl.showSubmit()">
+        </button>
+    </ion-nav-buttons>
+
+
+    <ion-content class="padding">
+
+        <h2 align="center">{{userDetailsCtrl.name}}</h2>
+
+        <div class="list">
+			<label class="item item-input">
+                <span class="input-label"><b>ID:</b></span>
+                <input type="text"
+                       ng-model="userDetailsCtrl.id">
+            </label>
+		
+            <label class="item item-input">
+                <span class="input-label"><b>Name:</b></span>
+                <input type="text"
+                       ng-model="userDetailsCtrl.name">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Password:</b></span>
+                <input type="text"
+                       ng-model="userDetailsCtrl.pass">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Description:</b></span>
+                <textarea rows="1"
+                          ng-model="userDetailsCtrl.description">
+                </textarea>
+            </label>
+
+ 
+        </div>
+
+    </ion-content>
+
+    <div ng-if="userDetailsCtrl.submitShowed" class="badge-div" ng-click="userDetailsCtrl.userSubmit()">
+        <div class="badge-icon ion-checkmark"></div>
+    </div>
+
+</ion-view>

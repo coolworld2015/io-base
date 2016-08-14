@@ -1,0 +1,42 @@
+<ion-view view-title="Users ({{usersCtrl.usersFilter.length}} / {{usersCtrl.users.length}})"
+          ng-click="usersCtrl.queryClear()">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="usersCtrl.showAdd()">
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search"
+                   ng-model="usersCtrl.query.name"
+                   ng-change="usersCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="usersCtrl.clear"></i>
+        </label>
+    </div>
+
+    <ion-content class="has-subheader">
+        <ion-refresher on-refresh="usersCtrl.doRefresh()"></ion-refresher>
+
+        <ion-list>
+            <ion-item
+                    collection-repeat="user in (usersCtrl.usersFilter = (usersCtrl.users | filter:usersCtrl.query))"
+                    type="item-text-wrap" ng-click="usersCtrl.userDetails(user)">
+                <h2><strong>{{user.name}}</strong></h2>
+
+                <ion-option-button class="button-assertive" ng-click="usersCtrl.showConfirm(user)">
+                    Delete
+                </ion-option-button>
+
+			</ion-item>
+        </ion-list>
+    </ion-content>
+
+    <div ng-if="usersCtrl.addShowed" class="badge-div" ng-click="usersCtrl.userAdd()">
+        <span class="badge-icon ion-plus"></span>
+    </div>
+
+</ion-view>
