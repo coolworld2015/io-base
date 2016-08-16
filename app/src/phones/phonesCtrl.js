@@ -32,12 +32,14 @@
             vm.phonesFilter = [];
             vm.clear = false;
             vm.searchShowed = false;
+            $rootScope.raisedError = false;
 
             PhonesService.getItems()
                 .then(function (result) {
                     vm.phones = result.data;
                     $ionicLoading.hide();
-                });
+                })
+                .catch(errorHandler);
         }
 
         function showSearch() {
@@ -63,7 +65,8 @@
                 .then(function (result) {
                     vm.phones = result.data;
                     $scope.$broadcast('scroll.refreshComplete');
-                });
+                })
+                .catch(errorHandler);
         }
 
         function queryChanged() {

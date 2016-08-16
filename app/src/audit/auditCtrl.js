@@ -31,12 +31,14 @@
             vm.auditFilter = [];
             vm.clear = false;
             vm.searchShowed = false;
+            $rootScope.raisedError = false;
 
             AuditService.getAudit()
                 .then(function (result) {
                     vm.audits = result.data;
                     $ionicLoading.hide();
-                });
+                })
+                .catch(errorHandler);
         }
 
         function showSearch() {
@@ -50,7 +52,8 @@
                 .then(function (result) {
                     vm.audits = result.data;
                     $scope.$broadcast('scroll.refreshComplete');
-                });
+                })
+                .catch(errorHandler);
         }
 
         function queryChanged() {

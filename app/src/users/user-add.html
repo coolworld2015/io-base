@@ -1,4 +1,4 @@
-<ion-view view-title="Add new item">
+<ion-view view-title="New item">
 
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
@@ -9,12 +9,11 @@
 
     <ion-content class="padding">
 
-        <h2 align="center">Add new item</h2>
+        <h2 align="center">New item</h2>
 
         <form ng-submit="userAddCtrl.userSubmit()" novalidate name="userAddCtrl.form" autocomplete="off">
             <div class="list">
                 <label class="item item-input">
-                    <span class="input-label"><b>Name:</b></span>
                     <input type="text"
                            ng-model="userAddCtrl.name"
                            placeholder="Name"
@@ -27,7 +26,6 @@
                 </div>
 
                 <label class="item item-input">
-                    <span class="input-label"><b>Password:</b></span>
                     <input type="text"
                            ng-model="userAddCtrl.pass"
                            placeholder="Password"
@@ -40,13 +38,11 @@
                 </div>
 
                 <label class="item item-input">
-                    <span class="input-label"><b>Description:</b></span>
-                    <textarea rows="1"
-                              ng-model="userAddCtrl.description"
-                              placeholder="Description"
-                              name="description"
-                              ng-change="userAddCtrl.change()" required>
-                    </textarea>
+                    <input type="text"
+                           ng-model="userAddCtrl.description"
+                           placeholder="Description"
+                           name="description"
+                           ng-change="userAddCtrl.change()" required>
                 </label>
 
                 <div ng-if="userAddCtrl.form.$submitted">
