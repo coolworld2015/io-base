@@ -1,70 +1,10 @@
-/* Empty. Add your own CSS if you like */
-
-body {
-    cursor: url('http://ionicframework.com/img/finger.png');
-}
-
-.star > .item-content {
-    background-color: #EEE8D6 !important;
-}
-
-.splash {
-    background: url(../img/skyline.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.branding {
-    width: 50%;
-    max-width: 300px;
-    margin: 0 auto;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.tagline {
-    font-size: 1.4rem;
-}
-
-.branding p {
-    margin-top: 10px;
-    font-size: 1rem;
-}
-
-.item-divider {
-    background-color: #EEE8D6;
+.platform-android .bar-subheader {
+    top: 93px;
 }
 
 .bar-positive, .tabs-positive > .tabs {
     background-color: #417D9A !important;
     border-color: #417D9A;
-}
-
-.item-thumbnail-left img {
-    border-radius: 10px;
-}
-
-.item h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #417D9A;
-}
-
-.dayhighlight {
-    background-color: #9EC6DE;
-    border-top: 20px solid #417D9A;
-}
-
-.dayhighlight h2 {
-    color: #417D9A;
-    font-size: 2rem;
-    font-weight: 200;
-}
-
-.platform-android .bar-subheader {
-    top: 93px;
 }
 
 .valid {
@@ -85,7 +25,7 @@ body {
 .logo {
     width: 150px;
     height: 150px;
-	border-radius: 20%;
+    border-radius: 20%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -126,4 +66,22 @@ body {
     text-align: center;
     text-shadow: black 0.15em 0.15em 0.15em;
     z-index: 10;
+}
+
+.item.item-draggable.item-thumbnail-left {
+    padding: 0;
+    border: none;
+    pointer-events: none;
+    background: transparent;
+    min-height: 0;
+}
+
+.item.item-draggable.item-thumbnail-left img {
+    position: static;
+    float: left;
+    margin-right: 15px;
+}
+
+.item-options {
+    height: calc(100% - 1px);
 }
