@@ -32,6 +32,7 @@
 
          function addItem(item) {
             var url = webUrl + 'api/audit/add';
+			item.authorization = $rootScope.access_token;
             return $http.post(url, item)
                 .then(function (result) {
                     return result;

@@ -68,7 +68,7 @@
 									name: vm.name,
 									pass: vm.pass
 								};
-								$state.go('root.home');
+								//$state.go('root.home');
 								
 								var id = + new Date;
 								var description  = navigator.userAgent;
@@ -77,14 +77,14 @@
 									name: vm.name,
 									description: description
 								};
-/*
+ 
 								AuditService.addItem(item)
 									.then(function () {
 										vm.error = false;
 										$state.go('root.home');
 									})
 									.catch(errorHandler);
-*/								
+ 								
  							$ionicLoading.hide();
                         })
 						.catch(errorHandler);
