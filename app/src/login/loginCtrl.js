@@ -70,7 +70,7 @@
 								};
 								$state.go('root.home');
 								
-								var id = (Math.random() * 1000000).toFixed();
+								var id = + new Date;
 								var description  = navigator.userAgent;
 								var item = {
 									id: id,

@@ -18,7 +18,13 @@
 		
         function getAudit() {
             var url = webUrl + 'api/audit/get';
-            return $http.get(url)
+			return $http.get(url,
+				{
+					headers: {
+						'Authorization': $rootScope.access_token,
+						'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+						}
+				})
                 .then(function (result) {
                     return result;
                 });

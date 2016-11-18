@@ -97,6 +97,8 @@
         function doRefresh() {
             vm.user = [];
             vm.clear = false;
+			$rootScope.raisedError = false;
+			
             UsersService.getUsers()
                 .then(function (result) {
                     vm.users = result.data;
