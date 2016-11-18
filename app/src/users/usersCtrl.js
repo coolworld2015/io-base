@@ -5,12 +5,13 @@
         .module('app')
         .controller('UsersCtrl', UsersCtrl);
 
-    UsersCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'UsersService',
+    UsersCtrl.$inject = ['$scope', '$rootScope', '$state', '$http', '$stateParams', 'UsersService',
         '$ionicLoading', '$ionicPopup', '$ionicListDelegate'];
 
-    function UsersCtrl($scope, $rootScope, $state, $stateParams, UsersService, $ionicLoading, $ionicPopup, $ionicListDelegate) {
+    function UsersCtrl($scope, $rootScope, $state, $http, $stateParams, UsersService, $ionicLoading, $ionicPopup, $ionicListDelegate) {
         var vm = this;
-
+		var webUrl = $rootScope.myConfig.webUrl;
+		
         angular.extend(vm, {
             init: init,
             showAdd: showAdd,
@@ -36,14 +37,14 @@
             vm.clear = false;
             vm.addShowed = false;
             $rootScope.raisedError = false;
-
+ 
             UsersService.getUsers()
                 .then(function (result) {
                     vm.users = result.data;
                     $ionicLoading.hide();
                 })
                 .catch(errorHandler);
-        }
+ 		}
 
         function showAdd() {
             vm.addShowed = vm.addShowed ? false : true;

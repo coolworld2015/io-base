@@ -19,16 +19,22 @@
             deleteItem: deleteItem,
 			_sort: sort
         };
-		
-        function getUsers() {
-            var url = webUrl + 'api/users/get';
-            return $http.get(url)
+	
+		function getUsers() {
+			var url = webUrl + 'api/users/get';
+			return $http.get(url,
+				{
+					headers: {
+						'Authorization': $rootScope.access_token,
+						'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+						}
+				})
                 .then(function (result) {
                     result.data.sort(sort);
                     return result;
                 });
-        }
-
+		}
+		
         function findByName(name) {
             var url = webUrl + 'api/users/findByName/' + name;
             return $http.get(url)

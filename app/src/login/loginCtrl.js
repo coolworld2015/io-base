@@ -5,11 +5,12 @@
         .module('app')
         .controller('LoginCtrl', LoginCtrl);
 
-    LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'AuditService'];
+    LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', '$http', 'UsersService', 'AuditService'];
 
-    function LoginCtrl($ionicLoading, $rootScope, $state, UsersService, AuditService) {
+    function LoginCtrl($ionicLoading, $rootScope, $state, $http, UsersService, AuditService) {
         var vm = this;
-
+		var webUrl = $rootScope.myConfig.webUrl;
+		
         angular.extend(vm, {
             init: init,
 			change: change,
@@ -47,8 +48,49 @@
                 check(vm.users, name, pass);
             }
         }
-
+		
         function getUsersOn(name, pass) {
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
+				var item = {
+					"name": vm.name,
+					"pass": vm.pass
+                };
+				
+                $http.post(webUrl + 'api/login', item)
+                        .then(function (results) {
+							$rootScope.loading = false;
+							$rootScope.access_token = results.data;
+							console.log(results);
+ 
+								$rootScope.currentUser = {
+									name: vm.name,
+									pass: vm.pass
+								};
+								$state.go('root.home');
+								
+								var id = (Math.random() * 1000000).toFixed();
+								var description  = navigator.userAgent;
+								var item = {
+									id: id,
+									name: vm.name,
+									description: description
+								};
+/*
+								AuditService.addItem(item)
+									.then(function () {
+										vm.error = false;
+										$state.go('root.home');
+									})
+									.catch(errorHandler);
+*/								
+ 							$ionicLoading.hide();
+                        })
+						.catch(errorHandler);
+        }
+		
+        function getUsersOn1(name, pass) {
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
