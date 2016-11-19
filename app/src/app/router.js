@@ -96,7 +96,13 @@
                             }
 
                             var webUrl = $rootScope.myConfig.webUrl + api;
-                            return $http.get(webUrl + name)
+                            return $http.get(webUrl + name,
+								{
+									headers: {
+										'Authorization': $rootScope.access_token,
+										'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+										}
+								})
                                 .then(function (data) {
                                     $ionicLoading.hide();
                                     return data.data;

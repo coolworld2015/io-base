@@ -47,6 +47,22 @@
     bottom: 30px;
 }
 
+.menu-div {
+    position: fixed;
+    /*background-color: #ef473a;*/
+    background-color: #417D9A;
+    color: #ffffff;
+    //border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    font-size: 35px;
+    z-index: 10;
+    text-align: center;
+
+    right: 30px;
+    top: 130px;
+}
+
 .badge-icon:before {
     line-height: 50px;
 }

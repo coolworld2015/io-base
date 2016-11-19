@@ -1,0 +1,49 @@
+-----------------------------------------------------------------------------------------------------
+mongoose.connect('mongodb://admin:admin@ds011258.mongolab.com:11258/ui-base');
+-----------------------------------------------------------------------------------------------------
+node index.js
+
+mongod.exe --dbpath d:/MongoDB/db
+mongod.exe --dbpath d:/MongoDB/db --repair
+
+-----------------------------------------------------------------------------------------------------
+mongo shell
+show dbs
+use test
+show collections
+db.dropDatabase()
+
+-----------------------------------------------------------------------------------------------------
+mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin --file kiev09_100_000_mongo.json
+
+-----------------------------------------------------------------------------------------------------
+mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin --file items.json
+mongoexport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin -o items1.json
+
+mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c users -u admin -p admin --file users.json
+mongoexport -h ds011258.mongolab.com:11258 -d ui-base -c users -u admin -p admin -o users1.json
+
+-----------------------------------------------------------------------------------------------------
+mongoose.connect('mongodb://localhost:27017/ui-base');
+
+mongoimport --db ui-base --collection items --file items.json
+mongoexport --db ui-base --collection items -o items1.json
+
+mongoimport --db ui-base --collection users --file users.json
+mongoexport --db ui-base --collection users -o users1.json
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+SELECT * INTO table_100_000
+FROM ส่ๅโ09
+WHERE id between 1 and 100000
+-----------------------------------------------------------------------------------------------------
+phone, name, index, street, house, apt
+-----------------------------------------------------------------------------------------------------
+export to Text File (Advance - UTF-8)
+import from Text File (Advance - UTF-8)
+-----------------------------------------------------------------------------------------------------
+MDBAdmin - export data - json
+-----------------------------------------------------------------------------------------------------
+Notepad++ - convert to UTF-8 // ONLY )))))))))

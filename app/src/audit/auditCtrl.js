@@ -48,6 +48,8 @@
         function doRefresh() {
             vm.audits = [];
             vm.clear = false;
+			$rootScope.raisedError = false;
+						
             AuditService.getAudit()
                 .then(function (result) {
                     vm.audits = result.data;

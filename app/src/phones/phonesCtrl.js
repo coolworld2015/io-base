@@ -61,6 +61,8 @@
         function doRefresh() {
             vm.phones = [];
             vm.clear = false;
+			$rootScope.raisedError = false;
+			
             PhonesService.getItems()
                 .then(function (result) {
                     vm.phones = result.data;

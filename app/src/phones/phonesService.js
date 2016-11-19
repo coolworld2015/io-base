@@ -32,7 +32,13 @@
 		
         function getItems() {
             var url = webUrl + 'api/items/get';
-            return $http.get(url)
+			return $http.get(url,
+				{
+					headers: {
+						'Authorization': $rootScope.access_token,
+						'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+						}
+				})
                 .then(function (result) {
                     result.data.sort(sort);
                     return result;

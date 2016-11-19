@@ -23,8 +23,8 @@
         init();
 
         function init() {
-            vm.name = '';
-            vm.pass = '';
+            vm.name = '1';
+            vm.pass = '1';
             $rootScope.currentUser = undefined;
             $rootScope.raisedError = false;
         }
@@ -68,7 +68,6 @@
 									name: vm.name,
 									pass: vm.pass
 								};
-								//$state.go('root.home');
 								
 								var id = + new Date;
 								var description  = navigator.userAgent;
@@ -90,45 +89,6 @@
 						.catch(errorHandler);
         }
 		
-        function getUsersOn1(name, pass) {
-            $ionicLoading.show({
-                template: '<ion-spinner></ion-spinner>'
-            });
-            UsersService.findByName(name)
-                .then(function (data) {
-                    $rootScope.loading = false;
-                    var user = data.data;
-
-                    if (user && (user.name == name && user.pass == pass)) {
-                        $rootScope.currentUser = {
-                            name: name,
-                            pass: pass
-                        };
-
-                        var id = (Math.random() * 1000000).toFixed();
-                        var description  = navigator.userAgent;
-                        var item = {
-                            id: id,
-                            name: vm.name,
-                            description: description
-                        };
-
-                        AuditService.addItem(item)
-                            .then(function () {
-								vm.error = false;
-                                $state.go('root.home');
-                            })
-                            .catch(errorHandler);
-
-                    } else {
-                        vm.error = true;
-                    }
- 
-                    $ionicLoading.hide();
-                })
-                .catch(errorHandler);
-        }
-
         function check(users, name, pass) {
             if (users) {
                 for (var i = 0; i < users.length; i++) {
