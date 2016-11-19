@@ -44,8 +44,9 @@
                 });
         }
 
-         function addItem(item) {
+        function addItem(item) {
             var url = webUrl + 'api/users/add';
+			item.authorization = $rootScope.access_token;
             return $http.post(url, item)
                 .then(function (result) {
                     return result;
@@ -54,6 +55,7 @@
 		
         function editItem(item) {
             var url = webUrl + 'api/users/update';
+			item.authorization = $rootScope.access_token;
             return $http.post(url, item)
                 .then(function (result) {
                     return result;
@@ -65,6 +67,7 @@
             var item = {
                 "id": id
             };
+			item.authorization = $rootScope.access_token;
             return $http.post(url, item)
                 .then(function (result) {
                     return result;

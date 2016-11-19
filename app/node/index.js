@@ -93,6 +93,93 @@ app.get('/api/users/get', function(req, res) {
 	});
 });
 
+app.post('/api/users/add', function(req, res) {
+	var agent = req.body.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var UsersModel = require('./mongo').UsersModel;
+			UsersModel.create({
+					id: req.body.id,
+					name: req.body.name,
+					pass: req.body.pass,
+					description: req.body.description
+				},
+				function (err, user) {
+					if (err) {
+						return res.send({error: 'Server error'});
+					}
+					res.send(user);
+				});
+		}
+	});
+});
+
+app.post('/api/users/update', function(req, res) {
+	var agent = req.body.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var UsersModel = require('./mongo').UsersModel;
+			UsersModel.findOne({
+				id: req.body.id
+			}, function (err, user) {
+				if (err) {
+					res.send({error: err.message});
+				} else {
+					user.name = req.body.name;
+					user.pass = req.body.pass;
+					user.description = req.body.description;
+
+					user.save(function (err) {
+						if (!err) {
+							res.send(user);
+						} else {
+							return res.send(err);
+						}
+					});
+				}	
+			});
+		}
+	});
+});
+
+app.post('/api/users/delete', function(req, res) {
+	var agent = req.body.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var UsersModel = require('./mongo').UsersModel;
+			UsersModel.remove({
+				"id": req.body.id
+			}, 
+			function (err) {
+				if (err) {
+					return res.send({error: 'Server error'});
+				} else {
+					console.log('User with id: ', req.body.id, ' was removed');
+					res.send('User with id: ' + req.body.id + ' was removed');
+				}
+			});
+		}
+	});
+});
+
 //------------------------------------------------------------------------
 app.get('/api/audit/get', function(req, res) {
 	var agent = req.headers.authorization;
