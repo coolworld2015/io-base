@@ -8,7 +8,7 @@ var templateCache = require('gulp-angular-templatecache');
 
 var scripts = [
     './app/vendors/ionic.bundle.min.js',
-    './app/**/!(*.spec).js'
+    './app/src/**/!(*.spec).js'
 ];
 
 var getScripts = function () {
