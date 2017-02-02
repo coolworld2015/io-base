@@ -18,7 +18,6 @@
 		
         function getAudit() {
 			var url = webUrl + 'api/audit/get';
-			console.log($rootScope.access_token)
 			return $http.get(url,
 				{
 					headers: {'Authorization': $rootScope.access_token}
