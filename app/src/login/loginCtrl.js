@@ -14,6 +14,7 @@
         angular.extend(vm, {
             init: init,
 			change: change,
+			onLogin: onLogin,
             toLogin: toLogin,
             checkUser: checkUser,
             _check: check,
@@ -32,7 +33,37 @@
         function change() {
             vm.error = false;
         }        
-		
+		            
+		function onLogin() {
+			if (vm.form.$invalid) {
+                return;
+            }
+			
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
+			
+			var item = {
+				"name": vm.name,
+				"pass": vm.pass,
+				"description": navigator.userAgent
+			};
+			
+			$http.post(webUrl + 'api/login', item)
+					.then(function (results) {
+						$rootScope.loading = false;
+						$rootScope.access_token = results.data.token;
+						vm.error = false;
+						$rootScope.currentUser = {
+							name: vm.name,
+							pass: vm.pass
+						};
+						$ionicLoading.hide();
+						$state.go('root.home');
+					})
+					.catch(errorHandler);
+		}
+			
 		function toLogin() {
             if (vm.form.$invalid) {
                 return;

@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, accept, authorization');
     next();
 });
-
+ 
 //------------------------------------------------------------------------
 var jwt = require('jsonwebtoken');
 var secret = 'f3oLigPb3vGCg9lgL0Bs97wySTCCuvYdOZg9zqTY32o';
@@ -49,8 +49,26 @@ app.post('/api/login', function(req, res) {
         } 
 		if (user) {
 			if (user.pass == req.body.pass) {
-				//console.log(user);
-				res.send(token);
+
+				// Audit start
+				var AuditModel = require('./mongo').AuditModel;
+				var date = new Date().toJSON().slice(0, 10);
+				var time = new Date().toTimeString().slice(0, 8);
+				AuditModel.create({
+						id: + new Date(),
+						name: req.body.name,
+						date: date + ' ' + time,
+						ip: req.ip,
+						description: req.body.description
+				},
+				function (err, audit) {
+					if (err) {
+						return res.send({error: 'Server error'});
+					} else {
+						res.send({token: token}); // Send TOKEN here !!!
+					}
+				});
+				// Audit end
 			} else {
 				res.status(403).send({ 
 					success: false, 
@@ -173,7 +191,7 @@ app.post('/api/users/delete', function(req, res) {
 					return res.send({error: 'Server error'});
 				} else {
 					console.log('User with id: ', req.body.id, ' was removed');
-					res.send('User with id: ' + req.body.id + ' was removed');
+					res.send({text: 'User with id: ' + req.body.id + ' was removed'});
 				}
 			});
 		}

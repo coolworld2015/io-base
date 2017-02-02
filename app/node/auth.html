@@ -70,7 +70,7 @@
         function CollectionCtrl($scope, $state, $rootScope, $http) {
             var vm = this;
 			//var url = 'http://localhost:3000/';
-			var url = 'http://ui-gai.herokuapp.com/';
+			var url = 'http://jwt-base.herokuapp.com/';
 			
 			angular.extend(vm, {
 				init: init,
@@ -91,13 +91,14 @@
 				
                 var item = {
 					"name": vm.name,
-					"pass": vm.pass
+					"pass": vm.pass,
+					"description": navigator.userAgent
                 };
 				
                 $http.post(url + 'api/login', item)
                         .then(function (results) {
 							$rootScope.loading = false;
-							$rootScope.access_token = results.data;
+							$rootScope.access_token = results.data.token;
 							console.log(results);
 							vm.getUsers();
                         })

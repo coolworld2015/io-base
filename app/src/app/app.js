@@ -62,8 +62,7 @@
         $rootScope.mode = 'ON-LINE (Heroku)';
 
         $rootScope.myConfig = {
-            //webUrl: 'http://ui-base.herokuapp.com/' //TODO Heroku MongoDB
-            webUrl: 'http://ui-gai.herokuapp.com/' //TODO Heroku MongoDB
+            webUrl: 'http://jwt-base.herokuapp.com/' //TODO Heroku MongoDB
             //webUrl: 'http://localhost:3000/' //TODO Local MongoDB
             //webUrl: 'http://localhost:3000/file/' //TODO Local JSON DB
         };
